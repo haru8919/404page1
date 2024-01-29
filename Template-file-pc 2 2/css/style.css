@@ -1,0 +1,616 @@
+@charset "UTF-8";
+html {
+  font-size: 16px;
+}
+
+body {
+  font-family: "Oswald", sans-serif;
+}
+
+a[href^="tel:"] {
+  pointer-events: none;
+}
+@media screen and (max-width: 768px) {
+  a[href^="tel:"] {
+    pointer-events: auto;
+  }
+}
+
+a {
+  transition: opacity 0.3s;
+}
+a:hover {
+  opacity: 0.7;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove default padding */
+ul,
+ol {
+  padding: 0;
+}
+
+/* Remove default margin */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+ul,
+ol,
+figure,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+/* Set core root defaults */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Set core body defaults */
+body {
+  min-height: 100vh;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+}
+
+/* Remove list styles on ul, ol elements with a class attribute */
+ul,
+ol {
+  list-style: none;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  -webkit-text-decoration-skip: ink;
+          text-decoration-skip-ink: auto;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* Make images easier to work with */
+img {
+  max-width: 100%;
+  display: block;
+  width: 100%;
+}
+
+/* Natural flow and rhythm in articles by default */
+article > * + * {
+  margin-top: 1em;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* Blur images when they have no alt attribute */
+img:not([alt]) {
+  filter: blur(10px);
+}
+
+/* フォームリセット */
+input,
+button,
+select,
+textarea {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  font: inherit;
+  outline: none;
+}
+
+textarea {
+  resize: vertical;
+}
+
+input[type=checkbox],
+input[type=radio] {
+  display: none;
+}
+
+input[type=submit],
+input[type=button],
+label,
+button,
+select {
+  cursor: pointer;
+}
+
+select::-ms-expand {
+  display: none;
+}
+
+.header {
+  position: fixed;
+  z-index: 1000;
+  width: 100%;
+  top: 0;
+  left: 0;
+  height: 80px;
+  background-color: #fff;
+}
+@media screen and (max-width: 768px) {
+  .header {
+    background-color: transparent;
+  }
+}
+
+.header__inner {
+  display: flex;
+  height: inherit;
+}
+
+.header__name {
+  margin-right: auto;
+}
+
+.header__logo {
+  width: 100%;
+}
+@media screen and (max-width: 768px) {
+  .header__logo {
+    width: 115px;
+  }
+}
+
+.header__nav {
+  height: inherit;
+}
+
+.header__items {
+  display: flex;
+  align-items: center;
+  height: inherit;
+}
+
+.header__item {
+  height: inherit;
+}
+
+.header__item:not(:first-child) {
+  margin-left: 50px;
+}
+
+.header__link {
+  color: #000;
+  font-size: 16px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: inherit;
+}
+
+.header__link.header__link--contact {
+  padding: 0 30px;
+  color: #fff;
+  background-color: #011950;
+}
+
+.fa-regular {
+  padding-right: 10px;
+}
+
+.hamburger {
+  position: fixed;
+  z-index: 9999;
+  top: 30px;
+  right: 15px;
+  width: 25px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.hamburger.is-active {
+  top: 32px;
+  right: 20px;
+}
+
+.hamburger span {
+  position: absolute;
+  left: 0;
+  display: inline-block;
+  width: 100%;
+  height: 2px;
+  background-color: #000;
+  transition: 0.3s transform, 0.3s background-color;
+}
+
+.hamburger.is-active span {
+  background-color: #fff;
+}
+
+.hamburger span:nth-child(1) {
+  top: 0;
+}
+
+.hamburger span:nth-child(2) {
+  top: 8px;
+  transition: 0.3s opacity;
+}
+
+.hamburger span:nth-child(3) {
+  top: 16px;
+}
+
+.hamburger.is-active span:nth-child(1) {
+  top: 15px;
+  transform: rotate(-45deg);
+}
+
+.hamburger.is-active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.is-active span:nth-child(3) {
+  top: 15px;
+  transform: rotate(45deg);
+}
+
+/*丸の拡大*/
+.circle-bg {
+  position: fixed;
+  z-index: 3;
+  /*丸の形*/
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: #001e63;
+  /*丸のスタート位置と形状*/
+  transform: scale(0); /*scaleをはじめは0に*/
+  right: -50px;
+  bottom: -50px;
+  transition: all 0.6s; /*0.6秒かけてアニメーション*/
+}
+
+.circle-bg.circleactive {
+  transform: scale(50); /*クラスが付与されたらscaleを拡大*/
+}
+
+.drawer-menu {
+  position: absolute;
+  z-index: 5000;
+  top: 0;
+  left: 0;
+  display: none;
+  width: 100%;
+  height: 100vh;
+  background-color: #001135;
+}
+
+.drawer__logo {
+  display: inline-block;
+}
+
+.drawer-menu__inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.drawer-menu__items {
+  display: flex;
+  text-align: left;
+  margin-top: 80px;
+  flex-direction: column;
+}
+
+.drawer-menu__item {
+  display: inline-block;
+  position: relative;
+}
+
+.drawer-menu__link {
+  font-size: 16px;
+  font-weight: 500;
+  display: flex;
+  width: 275px;
+  padding: 15px 15px;
+  letter-spacing: 0.05em;
+  color: #fff;
+  border-top: 1px solid #011950;
+}
+
+.drawer-menu__item:last-child .drawer-menu__link {
+  border-bottom: 1px solid #011950;
+}
+
+.drawer-menu__icons {
+  position: absolute;
+  bottom: 100px;
+  left: 70px;
+}
+
+.drawer-menu__icons i {
+  width: 22px;
+  height: 18px;
+  color: #fff;
+}
+
+.footer {
+  background-color: #001135;
+}
+
+.footer__logo {
+  padding-top: 75px;
+}
+@media screen and (max-width: 768px) {
+  .footer__logo {
+    padding-top: 61px;
+  }
+}
+
+.footer__logo-img {
+  max-width: 258px;
+  width: 100%;
+}
+@media screen and (max-width: 768px) {
+  .footer__logo-img {
+    max-width: 115px;
+    width: 100%;
+  }
+}
+
+.footer__c-box {
+  display: inline-block;
+  padding-bottom: 61px;
+}
+@media screen and (max-width: 768px) {
+  .footer__c-box {
+    padding-bottom: 31px;
+  }
+}
+
+.footer__copyright {
+  color: #fff;
+}
+
+.footer__body {
+  display: flex;
+}
+@media screen and (max-width: 768px) {
+  .footer__body {
+    flex-direction: column;
+  }
+}
+
+.footer__container {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 55px;
+}
+@media screen and (max-width: 768px) {
+  .footer__container {
+    flex-direction: column-reverse;
+    padding-bottom: 51px;
+  }
+}
+
+.footer__icons {
+  display: flex;
+  justify-content: center; /*これを指定*/
+  flex-direction: column;
+}
+.footer__icon {
+  padding-left: 46px;
+}
+@media screen and (max-width: 768px) {
+  .footer__icon {
+    padding-top: 51px;
+    padding-left: 0;
+  }
+}
+
+.footer__icon span {
+  padding-left: 20px;
+}
+
+.footer__texts {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.footer__text {
+  padding-top: 20px;
+  font-size: 16px;
+  line-height: 1.3125;
+  font-family: 300;
+  font-family: "Roboto", sans-serif;
+  color: white;
+}
+@media screen and (max-width: 768px) {
+  .footer__text {
+    font-size: 14px;
+    line-height: 1.3571428571;
+  }
+}
+
+.m-404__inner {
+  width: 100%;
+  max-width: 1300px;
+  padding-top: 300px;
+  padding-bottom: 120px;
+  margin-left: auto;
+  padding-right: 0px;
+  padding-left: 25px;
+}
+@media screen and (max-width: 768px) {
+  .m-404__inner {
+    padding-right: 0px;
+    padding-left: 20px;
+    padding-top: 120px;
+    padding-bottom: 300px;
+  }
+}
+
+.m-404__content {
+  position: absolute;
+  top: 35%;
+  left: 65%;
+  z-index: 2;
+  transform: translate(-50%, 50%);
+}
+@media screen and (max-width: 768px) {
+  .m-404__content {
+    left: 35%;
+    top: 50%;
+  }
+}
+
+.m-404__img {
+  display: block;
+  max-width: 1300px;
+  width: 100%;
+}
+
+.m-404__box {
+  position: absolute;
+  top: 37%;
+  left: 62%;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+  z-index: 1;
+}
+@media screen and (max-width: 768px) {
+  .m-404__box {
+    top: 43%;
+    left: 52%;
+  }
+}
+
+.m-404__title {
+  font-size: 70px;
+  font-weight: 700;
+  color: #fff;
+}
+@media screen and (max-width: 768px) {
+  .m-404__title {
+    font-size: 35px;
+    font-weight: 700;
+  }
+}
+
+.m-404__description {
+  width: 100%;
+  font-size: 16px;
+  font-family: "Noto Sans JP", sans-serif;
+  font-weight: 500;
+  line-height: 2.2;
+  color: #fff;
+}
+@media screen and (max-width: 768px) {
+  .m-404__description {
+    color: #000;
+  }
+}
+
+.m-404__link {
+  padding-top: 20px;
+}
+
+.m-404__btn {
+  font-size: 14px;
+  font-family: "Noto Sans JP", sans-serif;
+}
+@media screen and (max-width: 768px) {
+  .m-404__btn {
+    color: #000;
+    border-color: #000;
+  }
+}
+
+.m-404__btn.btn::before {
+  border-right: 1px solid #fff;
+  border-top: 1px solid #fff;
+  bottom: -3px;
+  content: "";
+  height: 6px;
+  margin: auto;
+  position: absolute;
+  left: 17px;
+  top: 0;
+  transform: rotate(225deg);
+  transition: left 0.5s;
+  width: 6px;
+}
+@media screen and (max-width: 768px) {
+  .m-404__btn.btn::before {
+    border-right: 1px solid #000;
+    border-top: 1px solid #000;
+    color: #000;
+  }
+}
+
+.m-404__btn.btn:hover::before {
+  left: 14px;
+  transition: left 0.5s;
+}
+
+.inner {
+  width: 100%;
+  max-width: 1080px;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 25px;
+  padding-left: 25px;
+}
+@media screen and (max-width: 768px) {
+  .inner {
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+}
+
+.btn {
+  /*アニメーションの起点とするためrelativeを指定*/
+  position: relative;
+  overflow: hidden;
+  /*ボタンの形状*/
+  text-decoration: none;
+  display: inline-block;
+  border: 1px solid #fff; /* ボーダーの色と太さ */
+  padding: 10px 30px;
+  text-align: center;
+  outline: none;
+  border-radius: 4px;
+  /*アニメーションの指定*/
+  transition: ease 0.2s;
+}
+
+@media screen and (max-width: 768px) {
+  .md-none {
+    display: none;
+  }
+}
+
+.md-show {
+  display: none;
+}
+@media screen and (max-width: 768px) {
+  .md-show {
+    display: block;
+  }
+}
+/*# sourceMappingURL=style.css.map */
